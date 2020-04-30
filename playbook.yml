@@ -1,10 +1,10 @@
 - hosts: all
   tasks:
     - name: create service template
-      become: yes # sudo
+      become: yes 
       template:
-        src: example.service.j2
-        dest: /etc/systemd/system/example.service
+        src: example1.service.j2
+        dest: /etc/systemd/system/example1.service
 
     - name: copy artifact
       copy:
@@ -13,7 +13,7 @@
         mode: '0777'
 
     - name: enable and start service
-      become: yes # sudo
+      become: yes 
       systemd:
         name: example
         enabled: yes
