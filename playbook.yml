@@ -4,3 +4,4 @@
     copy:
       src: example1
       dest: /home/vagrant/example1
+      force: true
