@@ -1,0 +1,6 @@
+- hosts: all
+  tasks:
+  - name: copy artifact
+    copy:
+      src: example1
+      dest: /home/vagrant/example1

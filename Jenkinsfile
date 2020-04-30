@@ -9,9 +9,7 @@ pipeline {
        }
        stage('Deliver') {
           steps {
-             sshagent(['toobox-vagrant-key']) {
-                 sh 'scp -o StrictHostKeyChecking=no example1 vagrant@10.10.50.3:~'
-             }
+                 nsiblePlaybook credentialsId: 'toobox-vagrant-key', inventory: 'hosts.ini', playbook: 'playbook.yml'
           }
        }
     }
