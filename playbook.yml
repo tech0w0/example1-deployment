@@ -1,19 +1,20 @@
 - hosts: all
   tasks:
     - name: create service template
-       become: true 
-       template:
-         src: example.service.j2
-         dest: /etc/systemd/system/example1.service
-  
+      become: yes 
+      template:
+        src: example1.service.j2
+        dest: /etc/systemd/system/example1.service
+
     - name: copy artifact
-       copy:
-         src: example1
-         dest: /home/vagrant/example1
-   
+      copy:
+        src: example1
+        dest: /home/vagrant/example1
+        mode: '0777'
+
     - name: enable and start service
-      become: true
+      become: yes 
       systemd:
-         name: example1
-         enable: yes
-         state: restarted
+        name: example
+        enabled: yes
+        state: restarted
