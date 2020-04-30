@@ -15,6 +15,6 @@
     - name: enable and start service
       become: yes 
       systemd:
-        name: example
+        name: example1
         enabled: yes
         state: restarted
