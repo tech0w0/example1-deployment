@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     parameters {
-       choice(name: 'TARGET_ENV', choice: ['staging', 'production'], description: 'Please choose an environment')
+       choices(name: 'TARGET_ENV', choice: ['staging', 'production'], description: 'Please choose an environment')
     }
 
     stages {
