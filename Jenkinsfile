@@ -3,7 +3,7 @@ pipeline {
 
     parameters {
        //choice(name: 'TARGET_ENV', choices: ['staging', 'production'], description: 'Please choose an environment')
-       gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
+       gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH', listSize: '0'
     }
 
     stages {
