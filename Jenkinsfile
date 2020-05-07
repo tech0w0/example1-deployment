@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    parameters {
+       choice(name: 'TARGET_ENV', choice: ['staging', 'production'], description: 'Please choose an environment')
+    }
+
     stages {
        stage('Copy artifact') {
           steps {
@@ -9,7 +13,7 @@ pipeline {
        }
        stage('Deliver') {
           steps {
-                 ansiblePlaybook credentialsId: 'toobox-vagrant-key', inventory: 'inventories/staging/hosts.ini', playbook: 'playbook.yml'
+                 ansiblePlaybook credentialsId: 'toobox-vagrant-key', inventory: 'inventories/${params.TARGET_ENV}/hosts.ini', playbook: 'playbook.yml'
           }
        }
        stage('Integration Test') {
