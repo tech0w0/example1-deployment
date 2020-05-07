@@ -2,7 +2,8 @@ pipeline {
     agent any
 
     parameters {
-       choice(name: 'TARGET_ENV', choices: ['staging', 'production'], description: 'Please choose an environment')
+       //choice(name: 'TARGET_ENV', choices: ['staging', 'production'], description: 'Please choose an environment')
+       gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
     }
 
     stages {
@@ -11,14 +12,28 @@ pipeline {
              copyArtifacts filter: 'example1', fingerprintArtifacts: true, projectName: 'example1', selector: lastSuccessful()
           }
        }
-       stage('Deliver') {
+       stage('Deliver Production') {
+          when {
+              branch 'master'
+          }
           steps {
                  ansiblePlaybook credentialsId: 'toobox-vagrant-key',
-                 inventory: "inventories/${params.TARGET_ENV}/hosts.ini",
+                 inventory: "inventories/production/hosts.ini",
                  playbook: 'playbook.yml',
                  disableHostKeyChecking: true
           }
        }
+       stage('Deliver Staging'){
+          when {
+             branch 'develop'
+          }
+          steps {
+                 ansiblePlaybook credentialsId: 'toobox-vagrant-key',
+                 inventory: "inventories/staging/hosts.ini",
+                 playbook: 'playbook.yml',
+                 disableHostKeyChecking: true
+          }
+       }             
        stage('Integration Test') {
           steps {
              sh 'docker run -t postman/newman:latest run "https://www.getpostman.com/collections/2f072fca0456a53ff5fd"'
