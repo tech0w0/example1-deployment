@@ -14,7 +14,7 @@ pipeline {
        }
        stage('Deliver Production') {
           when {
-              branch 'master'
+              expression { params.BRANCH == 'master'}
           }
           steps {
                  ansiblePlaybook credentialsId: 'toobox-vagrant-key',
