@@ -25,8 +25,8 @@ pipeline {
        }
        stage('Deliver Staging'){
           when {
-             branch 'develop'
-          }
+             expression { params.BRANCH == 'develop' }
+          } 
           steps {
                  ansiblePlaybook credentialsId: 'toobox-vagrant-key',
                  inventory: "inventories/staging/hosts.ini",
@@ -34,11 +34,11 @@ pipeline {
                  disableHostKeyChecking: true
           }
        }             
-       stage('Integration Test') {
-          steps {
-             sh 'docker run -t postman/newman:latest run "https://www.getpostman.com/collections/2f072fca0456a53ff5fd"'
+       //stage('Integration Test') {
+         // steps {
+           //  sh 'docker run -t postman/newman:latest run "https://www.getpostman.com/collections/2f072fca0456a53ff5fd"'
 
-          }
-       }
+         // }
+      // }
     }
  }
