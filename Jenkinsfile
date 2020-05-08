@@ -21,8 +21,12 @@ pipeline {
           }
        }            
        stage('Integration Test') {
+          agent { 
+             docker {image "postman/newman"}
+             args '--entrypoint='
+          }
           steps {
-             	sh 'docker run -v $HOME/workspace/example1-deployment/inventories/${TARGET_ENV}:/etc/newman -t postman/newman run "https://www.getpostman.com/collections/fc43637f9e05ae4486fb" -e postman_env.json' 
+             	sh "newman run \"https://www.getpostman.com/collections/fc43637f9e05ae4486fb\" -e inventories/${TARGET_ENV}/postman_env.json" 
           }
        }
     }
