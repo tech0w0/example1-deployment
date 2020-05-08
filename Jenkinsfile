@@ -39,25 +39,5 @@ pipeline {
              sh 'docker run -t postman/newman:latest run "https://www.getpostman.com/collections/2f072fca0456a53ff5fd"'
           }
        }
-         stage('Job description') {
-           when {
-             expression { params.BRANCH == 'develop' }
-          } 
-          steps {
-             script {
-                currentBuild.rawBuild.project.description = 'Staging'
-             }
-          }
-       }
-       stage('Job description2') {
-           when {
-             expression { params.BRANCH == 'master' }
-          } 
-          steps {
-             script {
-                currentBuild.rawBuild.project.description = 'Prodution'
-             }
-          }
-       }
     }
  }
