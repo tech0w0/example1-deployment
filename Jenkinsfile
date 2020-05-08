@@ -13,9 +13,6 @@ pipeline {
           }
        }
        stage('Deliver Production') {
-          when {
-              expression { params.BRANCH == 'master'}
-          }
           steps {
                  ansiblePlaybook credentialsId: 'toobox-vagrant-key',
                  inventory: "inventories/${TARGET_ENV}/hosts.ini",
