@@ -22,7 +22,7 @@ pipeline {
        }            
        stage('Integration Test') {
           steps {
-             	sh 'docker run -t postman/newman:latest run ${cat inventories/${TARGET_ENV}/postman_env.json}' 
+             	sh 'docker run -v $HOME/workspace/example1-deployment/inventories/${TARGET_ENV}:/etc/newman -t postman/newman run "https://www.getpostman.com/collections/fc43637f9e05ae4486fb" -e postman_env.json' 
           }
        }
     }
