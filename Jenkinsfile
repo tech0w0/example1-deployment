@@ -22,11 +22,11 @@ pipeline {
        }            
        stage('Integration Test') {
           agent { 
-             docker {image "postman/newman"
+            // docker {image "postman/newman"
              args '--entrypoint='}
           }
           steps {
-             	sh "newman run \"https://www.getpostman.com/collections/fc43637f9e05ae4486fb\" -e inventories/${TARGET_ENV}/postman_env.json" 
+             	sh "docker run -t postman/newman run \"https://www.getpostman.com/collections/fc43637f9e05ae4486fb\" -e inventories/${TARGET_ENV}/postman_env.json" 
           }
        }
     }
