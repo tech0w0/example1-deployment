@@ -49,7 +49,7 @@ pipeline {
              }
           }
        }
-         stage('Job description') {
+         stage('Job description2') {
            when {
              expression { params.BRANCH == 'master' }
           } 
