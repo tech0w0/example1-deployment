@@ -1,0 +1,14 @@
+{
+	"id": "cad027aa-2d0a-437b-99a7-ca4d2316bb8e",
+	"name": "production",
+	"values": [
+		{
+			"key": "baseURL",
+			"value": "http://10.10.50.4:9090",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2020-05-08T11:32:29.030Z",
+	"_postman_exported_using": "Postman/7.23.0"
+}

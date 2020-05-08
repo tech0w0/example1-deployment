@@ -22,13 +22,7 @@ pipeline {
        }            
        stage('Integration Test') {
           steps {
-             script {
-             	if (${TARGET_ENV} == 'staging') {
-             		sh 'docker run -t postman/newman:latest run "https://www.getpostman.com/collections/2f072fca0456a53ff5fd"'
-             	} else {
-			sh 'docker run -t postman/newman:latest run "https://www.getpostman.com/collections/6ca22ce4c81343c17fb7"'
-             	}
-             }
+             	sh 'docker run -v ~/collections:/etc/newman -t postman/newman:latest invantories/${TARGET_ENV}/postman_env.json' 
           }
        }
     }
