@@ -18,3 +18,4 @@
         name: example1
         enabled: yes
         state: restarted
+        deamon_reload: yes
