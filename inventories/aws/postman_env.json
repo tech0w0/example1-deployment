@@ -1,0 +1,14 @@
+{
+	"id": "b9f4a315-1831-433a-9ad9-dbdccfc59abe",
+	"name": "aws",
+	"values": [
+		{
+			"key": "baseURL",
+			"value": "http://18.184.67.24:9090",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2020-05-12T12:38:56.721Z",
+	"_postman_exported_using": "Postman/7.24.0"
+}
