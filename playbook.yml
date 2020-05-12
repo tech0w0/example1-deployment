@@ -1,16 +1,16 @@
 - hosts: all
   tasks:
-    - name: create service template
-      become: yes 
-      template:
-        src: example1.service.j2
-        dest: /etc/systemd/system/example1.service
-
     - name: copy artifact
       copy:
         src: example1
         dest: /home/{{ ansible_user }}/example1
         mode: '0777'
+
+    - name: create service template
+      become: yes
+      template:
+        src: example1.service.j2
+        dest: /etc/systemd/system/example1.service
 
     - name: enable and start service
       become: yes 
