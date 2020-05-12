@@ -4,7 +4,7 @@
 	"values": [
 		{
 			"key": "baseURL",
-			"value": "http://18.184.67.24:9090",
+			"value": "http://18.196.243.169:9090",
 			"enabled": true
 		}
 	],
