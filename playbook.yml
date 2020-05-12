@@ -9,7 +9,7 @@
     - name: copy artifact
       copy:
         src: example1
-        dest: /home/vagrant/example1
+        dest: /home/{{ ansible_user }}/example1
         mode: '0777'
 
     - name: enable and start service
