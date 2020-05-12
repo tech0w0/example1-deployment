@@ -14,7 +14,8 @@ pipeline {
        }
        stage('Deliver Production') {
           steps {
-                 ansiblePlaybook credentialsId: 'toobox-vagrant-key',
+                 ansiblePlaybook become: true, 
+                 credentialsId: 'toobox-vagrant-key',
                  inventory: "inventories/${TARGET_ENV}/hosts.ini",
                  playbook: 'playbook.yml',
                  disableHostKeyChecking: true
