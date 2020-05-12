@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/home/vagrant/example1
+ExecStart=/home/{{ ansible_user }}/example1
 PIDFile=/var/run/simple
 
 [Install]
